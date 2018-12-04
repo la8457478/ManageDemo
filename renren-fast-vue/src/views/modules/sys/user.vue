@@ -100,6 +100,12 @@
         label="姓名">
       </el-table-column>
       <el-table-column
+        prop="wechat"
+        header-align="center"
+        align="center"
+        label="微信">
+      </el-table-column>
+      <el-table-column
         prop="mobile"
         header-align="center"
         align="center"
@@ -111,16 +117,16 @@
         align="center"
         label="推荐人姓名">
       </el-table-column>
-      <el-table-column
-        prop="status"
-        header-align="center"
-        align="center"
-        label="状态">
-        <template slot-scope="scope">
-          <el-tag v-if="scope.row.status === 0" size="small" type="danger">禁用</el-tag>
-          <el-tag v-else size="small">正常</el-tag>
-        </template>
-      </el-table-column>
+      <!--<el-table-column-->
+        <!--prop="status"-->
+        <!--header-align="center"-->
+        <!--align="center"-->
+        <!--label="状态">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-tag v-if="scope.row.status === 0" size="small" type="danger">禁用</el-tag>-->
+          <!--<el-tag v-else size="small">正常</el-tag>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
       <el-table-column
         prop="createTime"
         header-align="center"

@@ -8,6 +8,7 @@ import io.renren.common.validator.Assert;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.UpdateGroup;
+import io.renren.modules.sys.entity.SysRoleEntity;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.form.PasswordForm;
 import io.renren.modules.sys.service.SysUserRoleService;
@@ -18,6 +19,7 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +53,22 @@ public class SysUserController extends AbstractController {
 
 		return R.ok().put("page", page);
 	}
-	
+	/**
+	 * 角色列表
+	 */
+	@GetMapping("/select")
+	@RequiresPermissions("sys:role:select")
+	public R select(){
+		Map<String, Object> map = new HashMap<>();
+
+		//如果不是超级管理员，则只查询自己所拥有的角色列表
+		if(getUserId() != Constant.SUPER_ADMIN){
+			map.put("create_user_id", getUserId());
+		}
+		List<SysUserEntity> list = sysUserService.selectByMap(map);
+
+		return R.ok().put("list", list);
+	}
 	/**
 	 * 获取登录的用户信息
 	 */

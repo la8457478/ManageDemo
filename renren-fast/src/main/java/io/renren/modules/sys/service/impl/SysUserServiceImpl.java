@@ -76,7 +76,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		user.setPassword(new Sha256Hash(user.getPassword(), salt).toHex());
 		user.setSalt(salt);
 		this.insert(user);
-		
 		//检查角色是否越权
 		checkRole(user);
 		

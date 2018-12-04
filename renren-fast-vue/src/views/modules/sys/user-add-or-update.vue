@@ -3,7 +3,8 @@
     :title="!dataForm.id ? '新增' : '修改'"
     :close-on-click-modal="false"
     :visible.sync="visible">
-    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
+    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()"
+             label-width="80px">
       <el-form-item label="用户名" prop="userName">
         <el-input v-model="dataForm.userName" placeholder="登录帐号"></el-input>
       </el-form-item>
@@ -19,17 +20,36 @@
       <el-form-item label="手机号" prop="mobile">
         <el-input v-model="dataForm.mobile" placeholder="手机号"></el-input>
       </el-form-item>
+      <el-form-item label="微信" prop="mobile">
+        <el-input v-model="dataForm.wechat" placeholder="微信"></el-input>
+      </el-form-item>
+      <el-form-item label="qq" prop="mobile">
+        <el-input v-model="dataForm.qq" placeholder="qq"></el-input>
+      </el-form-item>
+      <el-form-item label="上级用户" prop="userParentId">
+        <el-select v-model="dataForm.userParentId" placeholder="请选择">
+          <el-option
+            v-for="user in userList"
+            :key="user.userId"
+            :label="user.username"
+            :value="user.userId">
+          </el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="角色" size="mini" prop="roleIdList">
         <el-checkbox-group v-model="dataForm.roleIdList">
-          <el-checkbox v-for="role in roleList" :key="role.roleId" :label="role.roleId">{{ role.roleName }}</el-checkbox>
+          <el-checkbox v-for="role in roleList" :key="role.roleId" :label="role.roleId">{{ role.roleName }}
+          </el-checkbox>
         </el-checkbox-group>
       </el-form-item>
-      <el-form-item label="状态" size="mini" prop="status">
-        <el-radio-group v-model="dataForm.status">
-          <el-radio :label="0">禁用</el-radio>
-          <el-radio :label="1">正常</el-radio>
-        </el-radio-group>
-      </el-form-item>
+      <!--<el-form-item label="状态" size="mini" prop="status">-->
+      <!--<el-radio-group v-model="dataForm.status">-->
+      <!--<el-radio :label="0">禁用</el-radio>-->
+      <!--<el-radio :label="1">正常</el-radio>-->
+      <!--</el-radio-group>-->
+      <!--</el-form-item>-->
+
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -39,9 +59,10 @@
 </template>
 
 <script>
-  import { isEmail, isMobile } from '@/utils/validate'
+  import {isEmail, isMobile} from '@/utils/validate'
+
   export default {
-    data () {
+    data() {
       var validatePassword = (rule, value, callback) => {
         if (!this.dataForm.id && !/\S/.test(value)) {
           callback(new Error('密码不能为空'))
@@ -75,6 +96,7 @@
       return {
         visible: false,
         roleList: [],
+        userList:[],
         dataForm: {
           id: 0,
           userName: '',
@@ -83,33 +105,44 @@
           salt: '',
           email: '',
           mobile: '',
+          userParentId:"",
+          wechat:'',
+          qq:'',
           roleIdList: [],
           status: 1
         },
         dataRule: {
           userName: [
-            { required: true, message: '用户名不能为空', trigger: 'blur' }
+            {required: true, message: '用户名不能为空', trigger: 'blur'}
           ],
           password: [
-            { validator: validatePassword, trigger: 'blur' }
+            {validator: validatePassword, trigger: 'blur'}
           ],
           comfirmPassword: [
-            { validator: validateComfirmPassword, trigger: 'blur' }
+            {validator: validateComfirmPassword, trigger: 'blur'}
           ],
           email: [
-            { required: true, message: '邮箱不能为空', trigger: 'blur' },
-            { validator: validateEmail, trigger: 'blur' }
+            {required: true, message: '邮箱不能为空', trigger: 'blur'},
+            {validator: validateEmail, trigger: 'blur'}
           ],
           mobile: [
-            { required: true, message: '手机号不能为空', trigger: 'blur' },
-            { validator: validateMobile, trigger: 'blur' }
+            {required: true, message: '手机号不能为空', trigger: 'blur'},
+            {validator: validateMobile, trigger: 'blur'}
           ]
         }
       }
     },
     methods: {
-      init (id) {
+      init(id) {
         this.dataForm.id = id || 0
+        this.$http({
+          url: this.$http.adornUrl('/sys/user/select'),
+          method: 'get',
+          params: this.$http.adornParams()
+        }).then(({data}) => {
+          this.userList = data && data.code === 0 ? data.list : []
+        })
+
         this.$http({
           url: this.$http.adornUrl('/sys/role/select'),
           method: 'get',
@@ -133,6 +166,8 @@
                 this.dataForm.salt = data.user.salt
                 this.dataForm.email = data.user.email
                 this.dataForm.mobile = data.user.mobile
+                this.dataForm.qq = data.user.qq
+                this.dataForm.wechat = data.user.wechat
                 this.dataForm.roleIdList = data.user.roleIdList
                 this.dataForm.status = data.user.status
               }
@@ -141,7 +176,7 @@
         })
       },
       // 表单提交
-      dataFormSubmit () {
+      dataFormSubmit() {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             this.$http({

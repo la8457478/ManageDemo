@@ -96,6 +96,11 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
+		</dependency>
 		 <!--oracle驱动-->
 		<!--<dependency>-->
 			<!--<groupId>com.oracle</groupId>-->
