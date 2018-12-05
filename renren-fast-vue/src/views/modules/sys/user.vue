@@ -2,25 +2,16 @@
   <div class="mod-user">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
       <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="姓名" clearable></el-input>
+        <el-input v-model="dataForm.name" placeholder="姓名" clearable></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="手机号" clearable></el-input>
+        <el-input v-model="dataForm.mobile" placeholder="手机号" clearable></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="微信号" clearable></el-input>
+        <el-input v-model="dataForm.wechat" placeholder="微信号" clearable></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="QQ号" clearable></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="推荐人姓名" clearable></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="推荐人微信号" clearable></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-input v-model="dataForm.userName" placeholder="推荐人QQ号" clearable></el-input>
+        <el-input v-model="dataForm.refereeName" placeholder="上级" clearable></el-input>
       </el-form-item>
       <el-button type="success" @click="getDataList()">查询</el-button>
       <el-form-item>
@@ -39,37 +30,20 @@
           <el-form label-position="left"  class="demo-table-expand">
             <el-row :gutter="20">
               <el-col :span="8">
-                <el-form-item label="微信号">
-                  <span>{{ props.row.mobile }}</span>
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="QQ号">
-                  <span>{{ props.row.mobile }}</span>
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
-                <el-form-item label="地址">
-                  <span>{{ props.row.mobile }}</span>
-                </el-form-item>
-              </el-col>
-            </el-row>
-            <el-row :gutter="20">
-              <el-col :span="8">
-                <el-form-item label="推荐人姓名">
-                  <span>{{ props.row.mobile }}</span>
-                </el-form-item>
-              </el-col>
-              <el-col :span="8">
                 <el-form-item label="推荐人微信号">
-                  <span>{{ props.row.mobile }}</span>
+                  <span>{{ props.row.refereeWechat }}</span>
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="推荐人QQ号">
-                  <span>{{ props.row.mobile }}</span>
+                  <span>{{ props.row.refereeQq }}</span>
                 </el-form-item>
               </el-col>
+              <!--<el-col :span="8">-->
+              <!--<el-form-item label="地址">-->
+              <!--<span>{{ props.row.mobile }}</span>-->
+              <!--</el-form-item>-->
+              <!--</el-col>-->
             </el-row>
           </el-form>
         </template>
@@ -94,7 +68,7 @@
         label="用户名">
       </el-table-column>
       <el-table-column
-        prop="mobile"
+        prop="name"
         header-align="center"
         align="center"
         label="姓名">
@@ -112,7 +86,7 @@
         label="手机号">
       </el-table-column>
       <el-table-column
-        prop="mobile"
+        prop="refereeName"
         header-align="center"
         align="center"
         label="推荐人姓名">
