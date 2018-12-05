@@ -5,11 +5,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.UpdateGroup;
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
@@ -49,12 +46,15 @@ public class SysUserEntity implements Serializable {
      * 盐
      */
     private String salt;
-
+    /**
+     * 会员类型
+     */
+    private Integer memberType;
     /**
      * 邮箱
      */
-    @NotBlank(message = "邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
-    @Email(message = "邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
+//    @NotBlank(message = "邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
+//    @Email(message = "邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
     private String email;
 
     /**
@@ -72,6 +72,14 @@ public class SysUserEntity implements Serializable {
      */
     @TableField(exist = false)
     private List<Long> roleIdList;
+    /**
+     * 角色ID列表
+     */
+    @TableField(exist = false)
+    private Long roleId;
+
+    private String name;
+
 
     /**
      * 创建者ID
@@ -107,6 +115,10 @@ public class SysUserEntity implements Serializable {
      * 推荐人微信号
      */
     private String refereeWechat;
+    /**
+     * 推荐人手机
+     */
+    private String refereeMobile;
 
     /**
      * 推荐人qq号

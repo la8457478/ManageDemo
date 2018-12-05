@@ -49,6 +49,7 @@ public class SysUserController extends AbstractController {
 		if(getUserId() != Constant.SUPER_ADMIN){
 			params.put("createUserId", getUserId());
 		}
+		params.put("parentId",getUserId());
 		PageUtils page = sysUserService.queryPage(params);
 
 		return R.ok().put("page", page);
