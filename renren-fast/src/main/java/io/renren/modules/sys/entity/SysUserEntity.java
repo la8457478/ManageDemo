@@ -23,7 +23,6 @@ import java.util.List;
 @Data
 public class SysUserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
     /**
      * 用户ID
      */
@@ -35,7 +34,9 @@ public class SysUserEntity implements Serializable {
      */
     @NotBlank(message = "用户名不能为空", groups = {AddGroup.class, UpdateGroup.class})
     private String username;
-
+    // 子菜单
+    @TableField(exist = false)
+    private List<SysUserEntity> children;
     /**
      * 密码
      */
@@ -56,7 +57,6 @@ public class SysUserEntity implements Serializable {
 //    @NotBlank(message = "邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
 //    @Email(message = "邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
     private String email;
-
     /**
      * 手机号
      */
@@ -66,7 +66,6 @@ public class SysUserEntity implements Serializable {
      * 状态  0：禁用   1：正常
      */
     private Integer status;
-
     /**
      * 角色ID列表
      */

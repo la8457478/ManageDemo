@@ -19,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -44,16 +41,34 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 		String username = (String)params.get("username");
 		Long createUserId = (Long)params.get("createUserId");
 		Long parentId = (Long) params.get("parentId");
+//		Page<SysUserEntity> page = this.selectPage(
+//			new Query<SysUserEntity>(params).getPage(),
+//			new EntityWrapper<SysUserEntity>()
+//				.like(StringUtils.isNotBlank(username),"username", username)
+//					.eq(createUserId != null, "create_user_id", createUserId).eq(parentId != null, "parent_id", parentId)
+//		);
+		List<SysUserEntity> allChildrenUsers = baseMapper.queryAllChildrenUser(parentId);
+		List<Long> ids = new ArrayList<>();
+		ids = getIds(allChildrenUsers, ids);
 		Page<SysUserEntity> page = this.selectPage(
-			new Query<SysUserEntity>(params).getPage(),
-			new EntityWrapper<SysUserEntity>()
-				.like(StringUtils.isNotBlank(username),"username", username)
-					.eq(createUserId != null, "create_user_id", createUserId).eq(parentId != null, "parent_id", parentId)
+				new Query<SysUserEntity>(params).getPage(),
+				new EntityWrapper<SysUserEntity>()
+						.in(!ids.isEmpty(), "user_id", ids)
 		);
 
 		return new PageUtils(page);
 	}
 
+	List<Long> getIds(List<SysUserEntity> allChildrenUsers, List<Long> ids) {
+		if (!allChildrenUsers.isEmpty()) {
+			for (SysUserEntity sysUserEntity :
+					allChildrenUsers) {
+				ids.add(sysUserEntity.getUserId());
+				return getIds(sysUserEntity.getChildren(), ids);
+			}
+		}
+		return ids;
+	}
 	@Override
 	public List<String> queryAllPerms(Long userId) {
 		return baseMapper.queryAllPerms(userId);
