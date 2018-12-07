@@ -64,7 +64,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 			for (SysUserEntity sysUserEntity :
 					allChildrenUsers) {
 				ids.add(sysUserEntity.getUserId());
-				return getIds(sysUserEntity.getChildren(), ids);
+				getIds(sysUserEntity.getChildren(), ids);
 			}
 		}
 		return ids;

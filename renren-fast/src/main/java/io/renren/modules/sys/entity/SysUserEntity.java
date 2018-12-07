@@ -74,7 +74,6 @@ public class SysUserEntity implements Serializable {
     /**
      * 角色ID列表
      */
-    @TableField(exist = false)
     private Long roleId;
 
     private String name;

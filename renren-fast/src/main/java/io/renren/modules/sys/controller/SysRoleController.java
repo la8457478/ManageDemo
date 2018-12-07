@@ -63,7 +63,7 @@ public class SysRoleController extends AbstractController {
         }
         List<SysRoleEntity> list = sysRoleService.selectList(
                 new EntityWrapper<SysRoleEntity>()
-                        .le(getRoleId() != null, "role_id", getRoleId()));
+                        .ge(getRoleId() != null, "role_id", getRoleId()));
 
         return R.ok().put("list", list);
     }
