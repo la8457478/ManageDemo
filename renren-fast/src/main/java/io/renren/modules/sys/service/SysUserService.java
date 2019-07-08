@@ -1,6 +1,8 @@
 package io.renren.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
 
@@ -8,23 +10,24 @@ import java.util.List;
 import java.util.Map;
 
 
+
 /**
  * 系统用户
- * 
+ *
  * @author chenshun
  * @email sunlightcs@gmail.com
  * @date 2016年9月18日 上午9:43:39
  */
-public interface SysUserService extends IService<SysUserEntity> {
+public interface SysUserService extends IBaseService<SysUserEntity> {
 
-	PageUtils queryPage(Map<String, Object> params);
+	PageUtils queryPage(Map<String, Object> params, IPage<SysUserEntity> pageable)  ;
 
 	/**
 	 * 查询用户的所有权限
 	 * @param userId  用户ID
 	 */
 	List<String> queryAllPerms(Long userId);
-	
+
 	/**
 	 * 查询用户的所有菜单ID
 	 */
@@ -37,14 +40,15 @@ public interface SysUserService extends IService<SysUserEntity> {
 
 	/**
 	 * 保存用户
+	 * @return
 	 */
-	void save(SysUserEntity user);
-	
+	boolean save(SysUserEntity user);
+
 	/**
 	 * 修改用户
 	 */
 	void update(SysUserEntity user);
-	
+
 	/**
 	 * 删除用户
 	 */

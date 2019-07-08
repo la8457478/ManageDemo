@@ -16,7 +16,9 @@
 
 package io.renren.modules.job.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.job.entity.ScheduleJobLogEntity;
 
@@ -28,8 +30,8 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  * @since 1.2.0 2016-11-28
  */
-public interface ScheduleJobLogService extends IService<ScheduleJobLogEntity> {
+public interface ScheduleJobLogService extends IBaseService<ScheduleJobLogEntity> {
 
-	PageUtils queryPage(Map<String, Object> params);
+	PageUtils queryPage(Map<String, Object> params, IPage<ScheduleJobLogEntity> pageable);
 	
 }

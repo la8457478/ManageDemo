@@ -16,7 +16,9 @@
 
 package io.renren.modules.oss.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.oss.entity.SysOssEntity;
 
@@ -29,7 +31,7 @@ import java.util.Map;
  * @email sunlightcs@gmail.com
  * @date 2017-03-25 12:13:26
  */
-public interface SysOssService extends IService<SysOssEntity> {
+public interface SysOssService extends IBaseService<SysOssEntity> {
 
-	PageUtils queryPage(Map<String, Object> params);
+	PageUtils queryPage(Map<String, Object> params, IPage<SysOssEntity> pageable) ;
 }

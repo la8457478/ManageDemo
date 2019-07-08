@@ -16,10 +16,12 @@
 
 package io.renren.modules.sys.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import javax.validation.constraints.NotBlank;
+
+import lombok.Data;
 
 /**
  * 系统配置信息
@@ -29,6 +31,7 @@ import javax.validation.constraints.NotBlank;
  * @date 2016年12月4日 下午6:43:36
  */
 @TableName("sys_config")
+@Data
 public class SysConfigEntity {
 	@TableId
 	private Long id;

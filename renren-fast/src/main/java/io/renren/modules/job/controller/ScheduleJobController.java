@@ -18,6 +18,7 @@ package io.renren.modules.job.controller;
 
 import io.renren.common.annotation.SysLog;
 import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.modules.job.entity.ScheduleJobEntity;
@@ -46,7 +47,7 @@ public class ScheduleJobController {
 	@GetMapping("/list")
 	@RequiresPermissions("sys:schedule:list")
 	public R list(@RequestParam Map<String, Object> params){
-		PageUtils page = scheduleJobService.queryPage(params);
+		PageUtils page = scheduleJobService.queryPage(params,new Query<ScheduleJobEntity>(params).getPage());
 
 		return R.ok().put("page", page);
 	}
@@ -57,7 +58,7 @@ public class ScheduleJobController {
 	@GetMapping("/info/{jobId}")
 	@RequiresPermissions("sys:schedule:info")
 	public R info(@PathVariable("jobId") Long jobId){
-		ScheduleJobEntity schedule = scheduleJobService.selectById(jobId);
+		ScheduleJobEntity schedule = scheduleJobService.getById(jobId);
 		
 		return R.ok().put("schedule", schedule);
 	}

@@ -1,8 +1,11 @@
 package io.renren.modules.sys.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import io.renren.common.annotation.SysLog;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
 import io.renren.common.validator.Assert;
 import io.renren.common.validator.ValidatorUtils;
@@ -44,13 +47,15 @@ public class SysUserController extends AbstractController {
 	 */
 	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
-	public R list(@RequestParam Map<String, Object> params){
+	public R list(@RequestParam Map<String, Object> params) {
 		//只有超级管理员，才能查看所有管理员列表
-		if(getUserId() != Constant.SUPER_ADMIN){
+		if (getUserId() != Constant.SUPER_ADMIN) {
 			params.put("createUserId", getUserId());
 		}
-		params.put("parentId",getUserId());
-		PageUtils page = sysUserService.queryPage(params);
+		params.put("parentId", getUserId());
+		IPage<SysUserEntity> pageable = new Query<SysUserEntity>(params).getPage();
+
+		PageUtils page = sysUserService.queryPage(params, pageable);
 
 		return R.ok().put("page", page);
 	}
@@ -66,7 +71,7 @@ public class SysUserController extends AbstractController {
 		if(getUserId() != Constant.SUPER_ADMIN){
 			map.put("create_user_id", getUserId());
 		}
-		List<SysUserEntity> list = sysUserService.selectByMap(map);
+		List<SysUserEntity> list = sysUserService.list(map);
 
 		return R.ok().put("list", list);
 	}
@@ -106,7 +111,7 @@ public class SysUserController extends AbstractController {
 	@GetMapping("/info/{userId}")
 	@RequiresPermissions("sys:user:info")
 	public R info(@PathVariable("userId") Long userId){
-		SysUserEntity user = sysUserService.selectById(userId);
+		SysUserEntity user = sysUserService.getById(userId);
 		
 		//获取用户所属的角色列表
 		List<Long> roleIdList = sysUserRoleService.queryRoleIdList(userId);

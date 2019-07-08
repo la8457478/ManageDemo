@@ -16,10 +16,12 @@
 
 package io.renren.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.google.gson.Gson;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+import io.renren.common.base.service.BaseService;
 import io.renren.common.exception.RRException;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
@@ -36,34 +38,28 @@ import java.util.Arrays;
 import java.util.Map;
 
 @Service("sysConfigService")
-public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEntity> implements SysConfigService {
+public class SysConfigServiceImpl extends BaseService<SysConfigDao, SysConfigEntity> implements SysConfigService {
 	@Autowired
 	private SysConfigRedis sysConfigRedis;
 
 	@Override
-	public PageUtils queryPage(Map<String, Object> params) {
-		String paramKey = (String)params.get("paramKey");
-
-		Page<SysConfigEntity> page = this.selectPage(
-				new Query<SysConfigEntity>(params).getPage(),
-				new EntityWrapper<SysConfigEntity>()
-					.like(StringUtils.isNotBlank(paramKey),"param_key", paramKey)
-					.eq("status", 1)
+	public PageUtils queryPage(Map<String, Object> params, IPage<SysConfigEntity> pageable) {
+		IPage<SysConfigEntity> page = this.page(pageable,params
 		);
-
 		return new PageUtils(page);
 	}
 	
 	@Override
-	public void save(SysConfigEntity config) {
-		this.insert(config);
+	public boolean save(SysConfigEntity config) {
+		boolean i = this.save(config);
 		sysConfigRedis.saveOrUpdate(config);
+		return i ;
 	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void update(SysConfigEntity config) {
-		this.updateAllColumnById(config);
+		this.update(config);
 		sysConfigRedis.saveOrUpdate(config);
 	}
 
@@ -78,11 +74,11 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
 	@Transactional(rollbackFor = Exception.class)
 	public void deleteBatch(Long[] ids) {
 		for(Long id : ids){
-			SysConfigEntity config = this.selectById(id);
+			SysConfigEntity config = this.getById(id);
 			sysConfigRedis.delete(config.getParamKey());
 		}
 
-		this.deleteBatchIds(Arrays.asList(ids));
+		this.removeByIds(Arrays.asList(ids));
 	}
 
 	@Override

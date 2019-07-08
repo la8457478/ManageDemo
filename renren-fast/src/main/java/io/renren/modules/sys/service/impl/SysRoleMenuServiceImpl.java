@@ -1,6 +1,7 @@
 package io.renren.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import io.renren.common.base.service.BaseService;
 import io.renren.modules.sys.dao.SysRoleMenuDao;
 import io.renren.modules.sys.entity.SysRoleMenuEntity;
 import io.renren.modules.sys.service.SysRoleMenuService;
@@ -20,16 +21,16 @@ import java.util.List;
  * @date 2016年9月18日 上午9:44:35
  */
 @Service("sysRoleMenuService")
-public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuDao, SysRoleMenuEntity> implements SysRoleMenuService {
+public class SysRoleMenuServiceImpl extends BaseService<SysRoleMenuDao, SysRoleMenuEntity> implements SysRoleMenuService {
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void saveOrUpdate(Long roleId, List<Long> menuIdList) {
+	public boolean saveOrUpdate(Long roleId, List<Long> menuIdList) {
 		//先删除角色与菜单关系
 		deleteBatch(new Long[]{roleId});
 
 		if(menuIdList.size() == 0){
-			return ;
+			return false;
 		}
 
 		//保存角色与菜单关系
@@ -41,7 +42,7 @@ public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuDao, SysRoleM
 
 			list.add(sysRoleMenuEntity);
 		}
-		this.insertBatch(list);
+		return this.saveBatch(list);
 	}
 
 	@Override

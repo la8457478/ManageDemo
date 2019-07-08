@@ -1,6 +1,7 @@
 package io.renren.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.modules.sys.entity.SysRoleMenuEntity;
 
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.List;
  * @email sunlightcs@gmail.com
  * @date 2016年9月18日 上午9:42:30
  */
-public interface SysRoleMenuService extends IService<SysRoleMenuEntity> {
+public interface SysRoleMenuService extends IBaseService<SysRoleMenuEntity> {
 	
-	void saveOrUpdate(Long roleId, List<Long> menuIdList);
+	boolean saveOrUpdate(Long roleId, List<Long> menuIdList);
 	
 	/**
 	 * 根据角色ID，获取菜单ID列表

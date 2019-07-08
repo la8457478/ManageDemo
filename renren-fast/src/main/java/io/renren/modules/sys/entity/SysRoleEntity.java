@@ -1,14 +1,16 @@
 package io.renren.modules.sys.entity;
 
 
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import lombok.Data;
 
 /**
  * 角色
@@ -18,6 +20,7 @@ import java.util.List;
  * @date 2016年9月18日 上午9:27:38
  */
 @TableName("sys_role")
+@Data
 public class SysRoleEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

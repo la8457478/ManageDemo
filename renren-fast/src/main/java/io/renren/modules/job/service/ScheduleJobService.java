@@ -16,7 +16,10 @@
 
 package io.renren.modules.job.service;
 
-import com.baomidou.mybatisplus.service.IService;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.job.entity.ScheduleJobEntity;
 
@@ -28,20 +31,20 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  * @since 1.2.0 2016-11-28
  */
-public interface ScheduleJobService extends IService<ScheduleJobEntity> {
+public interface ScheduleJobService extends IBaseService<ScheduleJobEntity> {
 
-	PageUtils queryPage(Map<String, Object> params);
+	PageUtils queryPage(Map<String, Object> params, IPage<ScheduleJobEntity> pageable) ;
 
-	/**
-	 * 保存定时任务
-	 */
-	void save(ScheduleJobEntity scheduleJob);
-	
 	/**
 	 * 更新定时任务
 	 */
 	void update(ScheduleJobEntity scheduleJob);
-	
+
+	/**
+	 * 保存定时任务
+	 */
+	boolean save(ScheduleJobEntity scheduleJob);
+
 	/**
 	 * 批量删除定时任务
 	 */

@@ -1,6 +1,7 @@
 package io.renren.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import io.renren.common.base.service.BaseService;
 import io.renren.common.utils.R;
 import io.renren.modules.sys.dao.SysUserTokenDao;
 import io.renren.modules.sys.entity.SysUserTokenEntity;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 
 @Service("sysUserTokenService")
-public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUserTokenEntity> implements SysUserTokenService {
+public class SysUserTokenServiceImpl extends BaseService<SysUserTokenDao, SysUserTokenEntity> implements SysUserTokenService {
 	//12小时后过期
 	private final static int EXPIRE = 3600 * 12;
 
@@ -28,7 +29,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 		Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
 
 		//判断是否生成过token
-		SysUserTokenEntity tokenEntity = this.selectById(userId);
+		SysUserTokenEntity tokenEntity = this.getById(userId);
 		if(tokenEntity == null){
 			tokenEntity = new SysUserTokenEntity();
 			tokenEntity.setUserId(userId);
@@ -37,7 +38,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 			tokenEntity.setExpireTime(expireTime);
 
 			//保存token
-			this.insert(tokenEntity);
+			this.save(tokenEntity);
 		}else{
 			tokenEntity.setToken(token);
 			tokenEntity.setUpdateTime(now);
@@ -62,5 +63,10 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 		tokenEntity.setUserId(userId);
 		tokenEntity.setToken(token);
 		this.updateById(tokenEntity);
+	}
+
+	@Override
+	public SysUserTokenEntity queryByToken(String token) {
+		return this.queryByToken(token);
 	}
 }

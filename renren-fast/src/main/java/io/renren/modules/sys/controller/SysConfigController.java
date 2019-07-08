@@ -19,6 +19,7 @@ package io.renren.modules.sys.controller;
 
 import io.renren.common.annotation.SysLog;
 import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.modules.sys.entity.SysConfigEntity;
@@ -48,8 +49,7 @@ public class SysConfigController extends AbstractController {
 	@GetMapping("/list")
 	@RequiresPermissions("sys:config:list")
 	public R list(@RequestParam Map<String, Object> params){
-		PageUtils page = sysConfigService.queryPage(params);
-
+		PageUtils page = sysConfigService.queryPage(params,new Query<SysConfigEntity>(params).getPage());
 		return R.ok().put("page", page);
 	}
 	
@@ -60,7 +60,7 @@ public class SysConfigController extends AbstractController {
 	@GetMapping("/info/{id}")
 	@RequiresPermissions("sys:config:info")
 	public R info(@PathVariable("id") Long id){
-		SysConfigEntity config = sysConfigService.selectById(id);
+		SysConfigEntity config = sysConfigService.getById(id);
 		
 		return R.ok().put("config", config);
 	}

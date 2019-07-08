@@ -16,7 +16,8 @@
 
 package io.renren.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.modules.sys.entity.SysCaptchaEntity;
 
 import java.awt.image.BufferedImage;
@@ -27,7 +28,7 @@ import java.awt.image.BufferedImage;
  * @author Mark sunlightcs@gmail.com
  * @since 2.0.0 2018-02-10
  */
-public interface SysCaptchaService extends IService<SysCaptchaEntity> {
+public interface SysCaptchaService extends IBaseService<SysCaptchaEntity> {
 
     /**
      * 获取图片验证码

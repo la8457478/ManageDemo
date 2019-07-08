@@ -1,13 +1,12 @@
 package io.renren.modules.sys.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import io.renren.common.annotation.SysLog;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.modules.sys.entity.SysRoleEntity;
-import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.service.SysRoleMenuService;
 import io.renren.modules.sys.service.SysRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -44,7 +43,7 @@ public class SysRoleController extends AbstractController {
             params.put("createUserId", getUserId());
         }
 
-        PageUtils page = sysRoleService.queryPage(params);
+        PageUtils page = sysRoleService.queryPage(params,new Query<SysRoleEntity>(params).getPage());
 
         return R.ok().put("page", page);
     }
@@ -59,11 +58,9 @@ public class SysRoleController extends AbstractController {
 
         //如果不是超级管理员，则只查询自己所拥有的角色列表
         if (getUserId() != Constant.SUPER_ADMIN) {
-            map.put("create_user_id", getRoleId());
+            map.put("createUserId", getRoleId());
         }
-        List<SysRoleEntity> list = sysRoleService.selectList(
-                new EntityWrapper<SysRoleEntity>()
-                        .ge(getRoleId() != null, "role_id", getRoleId()));
+        List<SysRoleEntity> list = sysRoleService.list(map);
 
         return R.ok().put("list", list);
     }
@@ -74,7 +71,7 @@ public class SysRoleController extends AbstractController {
     @GetMapping("/info/{roleId}")
     @RequiresPermissions("sys:role:info")
     public R info(@PathVariable("roleId") Long roleId) {
-        SysRoleEntity role = sysRoleService.selectById(roleId);
+        SysRoleEntity role = sysRoleService.getById(roleId);
 
         //查询角色对应的菜单
         List<Long> menuIdList = sysRoleMenuService.queryMenuIdList(roleId);

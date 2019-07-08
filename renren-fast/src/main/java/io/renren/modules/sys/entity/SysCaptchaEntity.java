@@ -16,11 +16,13 @@
 
 package io.renren.modules.sys.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.util.Date;
+
+import lombok.Data;
 
 /**
  * 系统验证码
@@ -28,6 +30,7 @@ import java.util.Date;
  * @since 2.0.0 2018-02-10
  */
 @TableName("sys_captcha")
+@Data
 public class SysCaptchaEntity {
     @TableId(type = IdType.INPUT)
     private String uuid;
@@ -40,27 +43,4 @@ public class SysCaptchaEntity {
      */
     private Date expireTime;
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Date getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Date expireTime) {
-        this.expireTime = expireTime;
-    }
 }

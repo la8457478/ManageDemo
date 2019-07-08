@@ -17,7 +17,8 @@
 package io.renren.modules.sys.service.impl;
 
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import io.renren.common.base.service.BaseService;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.MapUtils;
 import io.renren.modules.sys.dao.SysMenuDao;
@@ -33,7 +34,7 @@ import java.util.List;
 
 
 @Service("sysMenuService")
-public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> implements SysMenuService {
+public class SysMenuServiceImpl extends BaseService<SysMenuDao, SysMenuEntity> implements SysMenuService {
 	@Autowired
 	private SysUserService sysUserService;
 	@Autowired
@@ -80,9 +81,9 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
 	@Override
 	public void delete(Long menuId){
 		//删除菜单
-		this.deleteById(menuId);
+		this.removeById(menuId);
 		//删除菜单与角色关联
-		sysRoleMenuService.deleteByMap(new MapUtils().put("menu_id", menuId));
+		sysRoleMenuService.removeByMap(new MapUtils().put("menu_id", menuId));
 	}
 
 	/**

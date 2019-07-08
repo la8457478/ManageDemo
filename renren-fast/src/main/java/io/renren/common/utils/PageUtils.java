@@ -16,10 +16,12 @@
 
 package io.renren.common.utils;
 
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.io.Serializable;
 import java.util.List;
+
+import lombok.Data;
 
 /**
  * 分页工具类
@@ -28,16 +30,17 @@ import java.util.List;
  * @email sunlightcs@gmail.com
  * @date 2016年11月4日 下午12:59:00
  */
+@Data
 public class PageUtils implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//总记录数
 	private int totalCount;
 	//每页记录数
-	private int pageSize;
+	private long pageSize;
 	//总页数
-	private int totalPage;
+	private long totalPage;
 	//当前页数
-	private int currPage;
+	private long currPage;
 	//列表数据
 	private List<?> list;
 	
@@ -59,7 +62,7 @@ public class PageUtils implements Serializable {
 	/**
 	 * 分页
 	 */
-	public PageUtils(Page<?> page) {
+	public PageUtils(IPage<?> page) {
 		this.list = page.getRecords();
 		this.totalCount = (int)page.getTotal();
 		this.pageSize = page.getSize();
@@ -67,44 +70,4 @@ public class PageUtils implements Serializable {
 		this.totalPage = (int)page.getPages();
 	}
 
-	public int getTotalCount() {
-		return totalCount;
-	}
-
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
-
-	public int getCurrPage() {
-		return currPage;
-	}
-
-	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
-	}
-
-	public List<?> getList() {
-		return list;
-	}
-
-	public void setList(List<?> list) {
-		this.list = list;
-	}
-	
 }

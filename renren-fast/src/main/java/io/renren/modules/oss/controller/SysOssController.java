@@ -21,6 +21,7 @@ import io.renren.common.exception.RRException;
 import io.renren.common.utils.ConfigConstant;
 import io.renren.common.utils.Constant;
 import io.renren.common.utils.PageUtils;
+import io.renren.common.utils.Query;
 import io.renren.common.utils.R;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AliyunGroup;
@@ -63,7 +64,7 @@ public class SysOssController {
 	@GetMapping("/list")
 	@RequiresPermissions("sys:oss:all")
 	public R list(@RequestParam Map<String, Object> params){
-		PageUtils page = sysOssService.queryPage(params);
+		PageUtils page = sysOssService.queryPage(params,new Query<SysOssEntity>(params).getPage());
 
 		return R.ok().put("page", page);
 	}
@@ -125,7 +126,7 @@ public class SysOssController {
 		SysOssEntity ossEntity = new SysOssEntity();
 		ossEntity.setUrl(url);
 		ossEntity.setCreateDate(new Date());
-		sysOssService.insert(ossEntity);
+		sysOssService.save(ossEntity);
 
 		return R.ok().put("url", url);
 	}
@@ -137,7 +138,7 @@ public class SysOssController {
 	@PostMapping("/delete")
 	@RequiresPermissions("sys:oss:all")
 	public R delete(@RequestBody Long[] ids){
-		sysOssService.deleteBatchIds(Arrays.asList(ids));
+		sysOssService.removeByIds(Arrays.asList(ids));
 
 		return R.ok();
 	}

@@ -17,7 +17,9 @@
 package io.renren.modules.sys.service;
 
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import io.renren.common.base.service.IBaseService;
 import io.renren.common.utils.PageUtils;
 import io.renren.modules.sys.entity.SysConfigEntity;
 
@@ -30,42 +32,43 @@ import java.util.Map;
  * @email sunlightcs@gmail.com
  * @date 2016年12月4日 下午6:49:01
  */
-public interface SysConfigService extends IService<SysConfigEntity>  {
+public interface SysConfigService extends IBaseService<SysConfigEntity> {
 
-	PageUtils queryPage(Map<String, Object> params);
+	PageUtils queryPage(Map<String, Object> params, IPage<SysConfigEntity> pageable);
 	
 	/**
 	 * 保存配置信息
+	 * @return
 	 */
-	public void save(SysConfigEntity config);
+	 boolean save(SysConfigEntity config);
 	
 	/**
 	 * 更新配置信息
 	 */
-	public void update(SysConfigEntity config);
+	 void update(SysConfigEntity config);
 	
 	/**
 	 * 根据key，更新value
 	 */
-	public void updateValueByKey(String key, String value);
+	 void updateValueByKey(String key, String value);
 	
 	/**
 	 * 删除配置信息
 	 */
-	public void deleteBatch(Long[] ids);
+	 void deleteBatch(Long[] ids);
 	
 	/**
 	 * 根据key，获取配置的value值
 	 * 
 	 * @param key           key
 	 */
-	public String getValue(String key);
+	 String getValue(String key);
 	
 	/**
 	 * 根据key，获取value的Object对象
 	 * @param key    key
 	 * @param clazz  Object对象
 	 */
-	public <T> T getConfigObject(String key, Class<T> clazz);
+	 <T> T getConfigObject(String key, Class<T> clazz);
 	
 }

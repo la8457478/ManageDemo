@@ -16,8 +16,9 @@
 
 package io.renren.modules.oss.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
+import io.renren.common.base.service.BaseService;
 import io.renren.common.utils.PageUtils;
 import io.renren.common.utils.Query;
 import io.renren.modules.oss.dao.SysOssDao;
@@ -29,11 +30,11 @@ import java.util.Map;
 
 
 @Service("sysOssService")
-public class SysOssServiceImpl extends ServiceImpl<SysOssDao, SysOssEntity> implements SysOssService {
+public class SysOssServiceImpl extends BaseService<SysOssDao, SysOssEntity> implements SysOssService {
 
 	@Override
-	public PageUtils queryPage(Map<String, Object> params) {
-		Page<SysOssEntity> page = this.selectPage(
+	public PageUtils queryPage(Map<String, Object> params, IPage<SysOssEntity> pageable) {
+		IPage<SysOssEntity> page = this.page(
 				new Query<SysOssEntity>(params).getPage()
 		);
 
