@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Import;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
 @Import({DynamicDataSourceConfig.class})
-@MapperScan("com.baomidou.mybatisplus.samples.quickstart.mapper")
+@MapperScan(basePackages = "io.renren.modules.**.dao")
 public class RenrenApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
