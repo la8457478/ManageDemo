@@ -3,6 +3,9 @@ package io.renren.common.example.generator;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Function;
 
 import io.renren.common.example.param.Param;
@@ -20,7 +23,7 @@ public abstract class AbstractPredicateGenerator<T> {
 
     public Function toPredicate(Param param) {
         //        Class paramType = path.getJavaType();//取得参数类型（对应实体的字段类型）
-        Function<QueryWrapper<T>,QueryWrapper<T>> o = null;
+        Function<QueryWrapper<T>,QueryWrapper<T>> o = i->i;
 
         o = createCriteria(o, param);
         return o;

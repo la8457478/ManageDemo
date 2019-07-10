@@ -44,7 +44,7 @@ public class SysUserServiceImpl extends BaseService<SysUserDao, SysUserEntity> i
         List<SysUserEntity> allChildrenUsers = baseMapper.queryAllChildrenUser(parentId);
         List<Long> ids = new ArrayList<>();
         ids = getIds(allChildrenUsers, ids);
-        params.put("id_isin", ids);
+        params.put("id_in", ids);
         IPage<SysUserEntity> page = this.page(
             pageable,
             params

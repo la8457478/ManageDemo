@@ -27,10 +27,10 @@ public class LikePredicateGenerator<T> extends AbstractPredicateGenerator<T> {
 
         String column = param.getPath();
         if (datas == null || datas.length == 0) {
-            o = getCreateMethod(o, column, null);
+            o = this.getCreateMethod(o, column, null);
         } else {
 //            for (Object data : datas) {
-                o = getCreateMethod(o, column, datas);
+                o = this.getCreateMethod(o, column, datas);
 //            }
         }
         return o;
