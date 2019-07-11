@@ -22,8 +22,8 @@ public class LikePredicateGenerator<T> extends AbstractPredicateGenerator<T> {
     }
 
     @Override
-    protected Function createCriteria(Function o, Param param) {
-        Object[] datas = ConverterManager.get(param.getValue().getClass()).transform(param.getValue());
+    protected Function createCriteria(Function o, Param param,Class paramType) {
+        Object[] datas = ConverterManager.get(paramType).transform(param.getValue());
 
         String column = param.getPath();
         if (datas == null || datas.length == 0) {

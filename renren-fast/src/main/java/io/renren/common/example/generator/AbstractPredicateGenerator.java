@@ -1,45 +1,43 @@
 package io.renren.common.example.generator;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.common.base.CaseFormat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.function.Function;
 
 import io.renren.common.example.param.Param;
 import io.renren.common.example.param.converter.ConverterManager;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Created by cwx183898 on 2017/12/17.
  */
+@Slf4j
 public abstract class AbstractPredicateGenerator<T> {
+
     private static final String[] DATE_FORMATERS = new String[] {
         "yyyy-MM", "yyyy-MM-dd", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss",
         "yyyy-MM-ddTHH:mm", "yyyy-MM-ddTHH:mm:ss",
         "yyyy/MM", "yyyy/MM/dd", "yyyy/MM/dd HH:mm", "yyyy/MM/dd HH:mm:ss",
         "yyyy/MM/ddTHH:mm", "yyyy/MM/ddTHH:mm:ss"};
+    private Class<?> clazz = null;
 
-    public Function toPredicate(Param param) {
-        //        Class paramType = path.getJavaType();//取得参数类型（对应实体的字段类型）
-        Function<QueryWrapper<T>,QueryWrapper<T>> o = i->i;
-
-        o = createCriteria(o, param);
-        return o;
+    public Function toPredicate(Param param, Function o, Class paramType) {
+        return createCriteria(o, param, paramType);
     }
 
-
-    protected Function createCriteria(Function o,Param param) {
-        Object[] datas = ConverterManager.get(param.getValue().getClass()).transform(param.getValue());
-        String column = param.getPath();
+    protected Function createCriteria(Function o, Param param, Class paramType) {
+        Object[] datas = ConverterManager.get(paramType).transform(param.getValue());
+        String column =
+            CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, param.getPath());
         if (datas == null || datas.length == 0) {
             o = getCreateMethod(o, column, null);
         } else {
             o = getCreateMethod(o, column, datas);
         }
+
         return o;
     }
 
-    protected abstract Function getCreateMethod(Function o, String column, Object[] values) ;
+    protected abstract Function getCreateMethod(Function o, String column, Object[] values);
 }

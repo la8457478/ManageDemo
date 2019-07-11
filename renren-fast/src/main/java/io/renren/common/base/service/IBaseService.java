@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.service.additional.update.impl.UpdateC
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
+import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -151,7 +152,7 @@ public interface IBaseService<T> {
         if(params==null){
             return Wrappers.emptyWrapper();
         }
-        return dynamicSpecification.toPredicate();
+        return dynamicSpecification.toPredicate(getEntityClass());
     }
 
     default Wrapper<T> generateWrapper(Map<String, Object> params) {
@@ -159,6 +160,10 @@ public interface IBaseService<T> {
         if(params==null){
             return Wrappers.emptyWrapper();
         }
-        return dynamicSpecification.toPredicate();
+        return dynamicSpecification.toPredicate(getEntityClass());
+    }
+
+    default Class<?> getEntityClass() {
+        return (Class<?>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
     }
 }
