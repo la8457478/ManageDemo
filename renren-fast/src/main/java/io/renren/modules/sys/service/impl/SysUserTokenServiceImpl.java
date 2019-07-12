@@ -67,6 +67,6 @@ public class SysUserTokenServiceImpl extends BaseService<SysUserTokenDao, SysUse
 
 	@Override
 	public SysUserTokenEntity queryByToken(String token) {
-		return this.queryByToken(token);
+		return this.baseMapper.queryByToken(token);
 	}
 }

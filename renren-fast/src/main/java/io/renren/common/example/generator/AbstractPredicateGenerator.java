@@ -27,7 +27,11 @@ public abstract class AbstractPredicateGenerator<T> {
     }
 
     protected Function createCriteria(Function o, Param param, Class paramType) {
+
         Object[] datas = ConverterManager.get(paramType).transform(param.getValue());
+        if (null == paramType||datas.length==0) {
+            return o;
+        }
         String column =
             CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, param.getPath());
         if (datas == null || datas.length == 0) {
