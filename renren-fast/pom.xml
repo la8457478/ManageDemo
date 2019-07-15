@@ -5,7 +5,11 @@
 	<groupId>io.renren</groupId>
 	<artifactId>renren-fast</artifactId>
 	<version>2.1.0</version>
-	<packaging>jar</packaging>
+	<modules>
+		<module>mybatis-plus-extend</module>
+		<module>management-web</module>
+	</modules>
+	<packaging>pom</packaging>
 	<description>renren-fast</description>
 
 	<parent>
@@ -90,16 +94,6 @@
 			<!--<artifactId>spring-boot-devtools</artifactId>-->
 			<!--<optional>true</optional>-->
 		<!--</dependency>-->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus</artifactId>
-			<version>${mybatisplus.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -246,13 +240,6 @@
 			</extension>
 		</extensions>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>
-				</configuration>
-			</plugin>
 			<!-- 跳过单元测试 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
