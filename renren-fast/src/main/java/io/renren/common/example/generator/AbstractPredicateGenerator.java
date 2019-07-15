@@ -10,7 +10,7 @@ import io.renren.common.example.param.converter.ConverterManager;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by cwx183898 on 2017/12/17.
+ * Created by AndyLiu on 2017/12/17.
  */
 @Slf4j
 public abstract class AbstractPredicateGenerator<T> {

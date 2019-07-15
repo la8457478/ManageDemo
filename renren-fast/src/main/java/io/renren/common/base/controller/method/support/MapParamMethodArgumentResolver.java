@@ -16,7 +16,7 @@ import java.util.Map;
 import io.renren.common.base.controller.method.support.annotations.MapParam;
 
 /**
- * Created by cwx183898 on 2017/8/18.
+ * Created by AndyLiu on 2017/8/18.
  */
 public class MapParamMethodArgumentResolver extends AbstractExtendedArgumentResolver implements HandlerMethodArgumentResolver {
     public boolean supportsParameter(MethodParameter parameter) {

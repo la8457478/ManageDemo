@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 /**
- * Created by cwx183898 on 2017/8/18.
+ * Created by AndyLiu on 2017/8/18.
  */
 @Slf4j
 public class DynamicSpecification<T> {
@@ -33,34 +33,34 @@ public class DynamicSpecification<T> {
         if (params != null) {
             Set<Map.Entry<String, Object>> entries = params.entrySet();
             for (Map.Entry<String, Object> entry : entries) {
-                wrapper = createPredicate(wrapper, entry,entityType);
+                wrapper = createPredicate(wrapper, entry, entityType);
             }
         }
         return wrapper;
     }
 
-    private QueryWrapper<T> createPredicate(QueryWrapper<T> wrapper, Map.Entry<String, Object> entry,Class<?> entityType) {
+    private QueryWrapper<T> createPredicate(QueryWrapper<T> wrapper, Map.Entry<String, Object> entry, Class<?> entityType) {
         Param param = new Param(entry);
-        Function o = i -> i;
+        Function o = null;
         try {
             entityType.getDeclaredFields();//取得参数类型（对应实体的字段类型）
-
-            Class paramType =entityType.getDeclaredField(param.getPath()).getType();//取得参数类型（对应实体的字段类型）
+            Class paramType = entityType.getDeclaredField(param.getPath()).getType();//取得参数类型（对应实体的字段类型）
             //根据判断符号获取sql生成规则类
             o = PredicateGeneratorFactory.getGenerator(param.getOper()).toPredicate(
                 param, o, paramType);
         } catch (NoSuchFieldException e) {
             log.error("noSuchFieldException class:{},field :{}", entityType.getName(), param.getPath());
         }
-
-        if (wrapper != null) {
-            if (param.getJoin().equals("or")) {
-                wrapper = wrapper.or(o);
+        if (o != null) {
+            if (wrapper != null) {
+                if (param.getJoin().equals("or")) {
+                    wrapper = wrapper.or(o);
+                } else {
+                    wrapper.and(o);
+                }
             } else {
                 wrapper.and(o);
             }
-        } else {
-            wrapper.and(o);
         }
         return wrapper;
     }

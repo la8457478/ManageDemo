@@ -16,19 +16,19 @@
       <el-menu
         class="site-navbar__menu site-navbar__menu--right"
         mode="horizontal">
-        <el-menu-item index="1" @click="$router.push({ name: 'theme' })">
+        <el-menu-item index="1" @click="$router.push({ name: 'theme' })" hidden = "true">
           <template slot="title">
             <el-badge value="new">
               <icon-svg name="shezhi" class="el-icon-setting"></icon-svg>
             </el-badge>
           </template>
         </el-menu-item>
-        <el-menu-item index="2">
+        <el-menu-item index="2" hidden = "true">
           <el-badge value="hot">
             <a href="//www.renren.io/" target="_blank">官方社区</a>
           </el-badge>
         </el-menu-item>
-        <el-submenu index="3">
+        <el-submenu index="3" hidden = "true">
           <template slot="title">Git源码</template>
           <el-menu-item index="2-1"><a href="//github.com/daxiongYang/renren-fast-vue" target="_blank">前端</a></el-menu-item>
           <el-menu-item index="2-2"><a href="//git.oschina.net/renrenio/renren-fast" target="_blank">后台</a></el-menu-item>

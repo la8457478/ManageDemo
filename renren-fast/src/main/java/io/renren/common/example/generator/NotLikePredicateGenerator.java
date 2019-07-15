@@ -10,7 +10,7 @@ import io.renren.common.example.param.converter.ConverterManager;
 
 
 /**
- * Created by cwx183898 on 2017/12/17.
+ * Created by AndyLiu on 2017/12/17.
  */
 public class NotLikePredicateGenerator<T> extends LikePredicateGenerator<T>{
 
@@ -26,13 +26,13 @@ public class NotLikePredicateGenerator<T> extends LikePredicateGenerator<T>{
             String likeValue = (before != null ? before : "") + values[0].toString() + (after != null ? after : "");
 
             Function<QueryWrapper<T>, QueryWrapper<T>> o1 = i -> i.notLike(column, likeValue);
-            o = o.andThen(o1);
+            o = o==null?o1:o.andThen(o1);
         } else if (values.length > 1) {
             for (Object value :
                 values) {
                 String likeValue = (before != null ? before : "") + values.toString() + (after != null ? after : "");
                 Function<QueryWrapper<T>, QueryWrapper<T>> o1 = i -> i.or().notLike(column, likeValue);
-                o = o.andThen(o1);
+                o = o==null?o1:o.andThen(o1);
             }
         }
         return o;

@@ -11,9 +11,9 @@ import io.renren.common.base.controller.method.support.annotations.EntityParam;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * @program: bianmaba-web-framework-extends
+ * @program: dreamtale-web-framework-extends
  * @description:
- * @author: Chenjiabin
+ * @author: AndyLiu
  * @create: 2018-04-23 20:05
  **/
 public abstract class DefaultCrudController<T, ID extends Serializable> extends DefaultReadController<T, ID> {

@@ -20,9 +20,9 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * @program: bianmaba-web-framework-extends
+ * @program: dreamtale-web-framework-extends
  * @description:
- * @author: Chenjiabin
+ * @author: AndiLiu
  * @create: 2018-04-23 20:05
  **/
 public abstract class DefaultReadController<T, ID extends Serializable> {

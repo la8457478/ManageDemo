@@ -22,7 +22,7 @@ import java.util.Map;
 import io.renren.common.base.controller.method.support.annotations.EntityParam;
 
 /**
- * Created by cwx183898 on 2017/8/17.
+ * Created by AndyLiu on 2017/8/17.
  */
 public class EntityParamMethodArgumentResolver extends AbstractExtendedArgumentResolver implements HandlerMethodArgumentResolver {
     @Override

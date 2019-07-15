@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 /**
  * LIKE
- * Created by cwx183898 on 2017/12/17.
+ * Created by AndyLiu on 2017/12/17.
  */
 public class LikePredicateGenerator<T> extends AbstractPredicateGenerator<T> {
 
@@ -40,15 +40,14 @@ public class LikePredicateGenerator<T> extends AbstractPredicateGenerator<T> {
     protected Function getCreateMethod(Function o, String column, Object[] values) {
         if (values.length == 1) {
             String likeValue = (before != null ? before : "") + values[0].toString() + (after != null ? after : "");
-
             Function<QueryWrapper<T>, QueryWrapper<T>> o1 = i -> i.like(column, likeValue);
-            o = o.andThen(o1);
+            o = o==null?o1:o.andThen(o1);
         } else if (values.length > 1) {
             for (Object value :
                 values) {
                 String likeValue = (before != null ? before : "") + values.toString() + (after != null ? after : "");
                 Function<QueryWrapper<T>, QueryWrapper<T>> o1 = i -> i.or().like(column, likeValue);
-                o = o.andThen(o1);
+                o = o==null?o1:o.andThen(o1);
             }
         }
         return o;

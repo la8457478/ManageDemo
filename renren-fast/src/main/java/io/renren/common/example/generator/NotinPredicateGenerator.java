@@ -14,7 +14,7 @@ public class NotinPredicateGenerator<T> extends AbstractPredicateGenerator<T> {
     @Override
     protected Function getCreateMethod(Function o, String column, Object[] values) {
         Function<QueryWrapper<T>, QueryWrapper<T>> o1 = i -> i.notIn(column, values);
-        o = o.andThen(o1);
+        o = o==null?o1:o.andThen(o1);
         return o;
     }
 }
