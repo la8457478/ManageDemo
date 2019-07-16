@@ -1,9 +1,10 @@
-package io.renren.datasources;
+package io.dreamtale.datasources;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-import javax.sql.DataSource;
 import java.util.Map;
+
+import javax.sql.DataSource;
 
 /**
  * 动态数据源

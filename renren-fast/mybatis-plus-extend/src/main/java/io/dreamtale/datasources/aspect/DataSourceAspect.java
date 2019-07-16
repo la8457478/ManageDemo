@@ -1,8 +1,5 @@
-package io.renren.datasources.aspect;
+package io.dreamtale.datasources.aspect;
 
-import io.renren.datasources.DataSourceNames;
-import io.renren.datasources.DynamicDataSource;
-import io.renren.datasources.annotation.DataSource;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -15,6 +12,11 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
+import io.dreamtale.datasources.DataSourceNames;
+import io.dreamtale.datasources.DynamicDataSource;
+import io.dreamtale.datasources.annotation.DataSource;
+
+
 /**
  * 多数据源，切面处理类
  * @author chenshun
@@ -26,7 +28,7 @@ import java.lang.reflect.Method;
 public class DataSourceAspect implements Ordered {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Pointcut("@annotation(io.renren.datasources.annotation.DataSource)")
+    @Pointcut("@annotation(io.dreamtale.datasources.annotation.DataSource)")
     public void dataSourcePointCut() {
 
     }

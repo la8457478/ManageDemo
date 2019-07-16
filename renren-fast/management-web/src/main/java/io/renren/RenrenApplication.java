@@ -1,6 +1,6 @@
 package io.renren;
 
-import io.renren.datasources.DynamicDataSourceConfig;
+import io.dreamtale.datasources.DynamicDataSourceConfig;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

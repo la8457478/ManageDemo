@@ -1,4 +1,4 @@
-package io.dreamtale.mybatisplus.extend.common.utils;
+package io.dreamtale.bean.base.constants;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

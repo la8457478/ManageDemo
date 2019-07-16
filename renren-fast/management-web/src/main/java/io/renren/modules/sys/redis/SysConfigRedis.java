@@ -18,7 +18,7 @@ package io.renren.modules.sys.redis;
 
 
 import io.dreamtale.mybatisplus.extend.common.utils.RedisKeys;
-import io.dreamtale.mybatisplus.extend.common.utils.RedisUtils;
+import io.renren.RedisUtils;
 import io.renren.modules.sys.entity.SysConfigEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

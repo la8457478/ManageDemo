@@ -1,4 +1,4 @@
-package io.dreamtale.mybatisplus.extend.common.utils;
+package io.renren;
 
 import com.google.gson.Gson;
 

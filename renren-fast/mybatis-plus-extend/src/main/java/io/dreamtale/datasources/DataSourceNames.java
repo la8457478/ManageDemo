@@ -1,4 +1,4 @@
-package io.renren.datasources;
+package io.dreamtale.datasources;
 
 /**
  * 增加多数据源，在此配置

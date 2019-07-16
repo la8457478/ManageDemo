@@ -16,8 +16,8 @@
 
 package io.renren.service;
 
-import io.renren.datasources.DataSourceNames;
-import io.renren.datasources.annotation.DataSource;
+import io.dreamtale.datasources.DataSourceNames;
+import io.dreamtale.datasources.annotation.DataSource;
 import io.renren.modules.sys.entity.SysUserEntity;
 import io.renren.modules.sys.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package io.renren;
 
-import io.renren.common.utils.RedisUtils;
 import io.renren.modules.sys.entity.SysUserEntity;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Test;
