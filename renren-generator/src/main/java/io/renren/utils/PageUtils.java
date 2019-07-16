@@ -1,4 +1,4 @@
-package io.renren.utils;
+package io.dreamtale.utils;
 
 import java.io.Serializable;
 import java.util.List;

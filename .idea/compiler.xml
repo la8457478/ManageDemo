@@ -6,16 +6,38 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="renren-fast" />
+        <module name="commonbusinessservice" />
+        <module name="domain" />
+        <module name="common-business-service" />
+        <module name="management-web" />
+        <module name="mybatisplusextend" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="common-business-dao" target="1.8" />
+      <module name="common-business-service" target="1.8" />
+      <module name="commonbusiness" target="1.8" />
+      <module name="commonbusinessservice" target="1.8" />
+      <module name="domain" target="1.8" />
+      <module name="dreamtale-fast" target="1.8" />
+      <module name="management-web" target="1.8" />
+      <module name="managementweb" target="1.8" />
+      <module name="mybatis-plus-extend" target="1.5" />
+      <module name="mybatisplusextend" target="1.8" />
       <module name="renren-fast" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="renren-fast" options="-parameters" />
+      <module name="common-business-dao" options="-parameters" />
+      <module name="common-business-service" options="-parameters" />
+      <module name="commonbusiness" options="-parameters" />
+      <module name="commonbusinessservice" options="-parameters" />
+      <module name="domain" options="-parameters" />
+      <module name="management-web" options="-parameters" />
+      <module name="managementweb" options="-parameters" />
+      <module name="mybatisplusextend" options="-parameters" />
+      <module name="renren-fast" options="" />
     </option>
   </component>
 </project>

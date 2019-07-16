@@ -1,4 +1,4 @@
-package io.renren.entity;
+package io.dreamtale.entity;
 
 import java.util.List;
 

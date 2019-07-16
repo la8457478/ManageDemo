@@ -3,7 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ManageDemo.iml" filepath="$PROJECT_DIR$/.idea/ManageDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/renren-fast/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast/renren-fast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/common-business/common-business-service/common-business-service.iml" filepath="$PROJECT_DIR$/dreamtale-fast/common-business/common-business-service/common-business-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/common-business/commonbusiness.iml" filepath="$PROJECT_DIR$/dreamtale-fast/common-business/commonbusiness.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/common-business/common-business-service/commonbusinessservice.iml" filepath="$PROJECT_DIR$/dreamtale-fast/common-business/common-business-service/commonbusinessservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/domain/domain.iml" filepath="$PROJECT_DIR$/dreamtale-fast/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/dreamtale-fast.iml" filepath="$PROJECT_DIR$/dreamtale-fast/dreamtale-fast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/management-web/management-web.iml" filepath="$PROJECT_DIR$/dreamtale-fast/management-web/management-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dreamtale-fast/mybatis-plus-extend/mybatisplusextend.iml" filepath="$PROJECT_DIR$/dreamtale-fast/mybatis-plus-extend/mybatisplusextend.iml" />
     </modules>
   </component>
 </project>

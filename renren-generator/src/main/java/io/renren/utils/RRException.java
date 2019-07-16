@@ -1,4 +1,4 @@
-package io.renren.utils;
+package io.dreamtale.utils;
 
 /**
  * 自定义异常

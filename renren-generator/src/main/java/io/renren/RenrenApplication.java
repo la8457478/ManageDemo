@@ -1,11 +1,11 @@
-package io.renren;
+package io.dreamtale;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("io.renren.dao")
+@MapperScan("io.dreamtale.dao")
 public class RenrenApplication {
 
 	public static void main(String[] args) {

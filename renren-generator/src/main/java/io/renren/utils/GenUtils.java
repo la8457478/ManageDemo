@@ -1,7 +1,7 @@
-package io.renren.utils;
+package io.dreamtale.utils;
 
-import io.renren.entity.ColumnEntity;
-import io.renren.entity.TableEntity;
+import io.dreamtale.entity.ColumnEntity;
+import io.dreamtale.entity.TableEntity;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -100,7 +100,7 @@ public class GenUtils {
         prop.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader" );
         Velocity.init(prop);
         String mainPath = config.getString("mainPath" );
-        mainPath = StringUtils.isBlank(mainPath) ? "io.renren" : mainPath;
+        mainPath = StringUtils.isBlank(mainPath) ? "io.dreamtale" : mainPath;
         //封装模板数据
         Map<String, Object> map = new HashMap<>();
         map.put("tableName", tableEntity.getTableName());
@@ -186,11 +186,11 @@ public class GenUtils {
         }
 
         if (template.contains("Service.java.vm" )) {
-            return packagePath + "service" + File.separator + className + "Service.java";
+            return packagePath + "sys" + File.separator + className + "Service.java";
         }
 
         if (template.contains("ServiceImpl.java.vm" )) {
-            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
+            return packagePath + "sys" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
         }
 
         if (template.contains("Controller.java.vm" )) {

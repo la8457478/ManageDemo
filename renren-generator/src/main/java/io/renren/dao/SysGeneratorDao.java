@@ -1,4 +1,4 @@
-package io.renren.dao;
+package io.dreamtale.dao;
 
 import java.util.List;
 import java.util.Map;

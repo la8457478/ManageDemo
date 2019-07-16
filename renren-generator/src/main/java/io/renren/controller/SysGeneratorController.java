@@ -1,10 +1,10 @@
-package io.renren.controller;
+package io.dreamtale.controller;
 
 import com.alibaba.fastjson.JSON;
-import io.renren.service.SysGeneratorService;
-import io.renren.utils.PageUtils;
-import io.renren.utils.Query;
-import io.renren.utils.R;
+import io.dreamtale.service.SysGeneratorService;
+import io.dreamtale.utils.PageUtils;
+import io.dreamtale.utils.Query;
+import io.dreamtale.utils.R;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,7 +55,7 @@ public class SysGeneratorController {
 		byte[] data = sysGeneratorService.generatorCode(tables.split(","));
 
 		response.reset();
-		response.setHeader("Content-Disposition", "attachment; filename=\"renren.zip\"");
+		response.setHeader("Content-Disposition", "attachment; filename=\"dreamtale.zip\"");
 		response.addHeader("Content-Length", "" + data.length);
 		response.setContentType("application/octet-stream; charset=UTF-8");
 
