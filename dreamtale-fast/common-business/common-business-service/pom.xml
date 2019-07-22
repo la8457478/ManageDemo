@@ -11,6 +11,9 @@
 
     <groupId>io.dreamtale</groupId>
     <artifactId>common-business-service</artifactId>
+    <dependencies>
+
+    </dependencies>
 
 
 </project>

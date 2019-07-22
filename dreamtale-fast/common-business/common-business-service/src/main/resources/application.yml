@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: auth-service
+  #nacos\u914D\u7F6E\u4E2D\u5FC3
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
