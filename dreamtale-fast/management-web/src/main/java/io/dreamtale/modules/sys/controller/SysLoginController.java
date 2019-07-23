@@ -1,5 +1,7 @@
 package io.dreamtale.modules.sys.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import io.dreamtale.bean.entity.sys.entity.SysUserEntity;
 import io.dreamtale.modules.sys.form.SysLoginForm;
 import io.dreamtale.service.sys.SysCaptchaService;
@@ -32,11 +34,11 @@ import java.util.Map;
  */
 @RestController
 public class SysLoginController extends AbstractController {
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysUserService sysUserService;
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysUserTokenService sysUserTokenService;
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysCaptchaService sysCaptchaService;
 
 	/**

@@ -16,6 +16,8 @@
 
 package io.dreamtale.modules.sys.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import io.dreamtale.bean.entity.sys.entity.SysLogEntity;
 import io.dreamtale.mybatisplus.extend.common.utils.PageUtils;
 import io.dreamtale.mybatisplus.extend.common.utils.Query;
@@ -43,7 +45,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/sys/log")
 public class SysLogController {
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysLogService sysLogService;
 	
 	/**

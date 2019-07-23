@@ -16,6 +16,8 @@
 
 package io.dreamtale.modules.sys.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import io.dreamtale.bean.entity.sys.entity.SysMenuEntity;
 import io.dreamtale.exception.RRException;
 import io.dreamtale.mybatisplus.extend.common.annotation.SysLog;
@@ -42,9 +44,9 @@ import java.util.Set;
 @RestController
 @RequestMapping("/sys/menu")
 public class SysMenuController extends AbstractController {
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysMenuService sysMenuService;
-	@Autowired
+	@Reference(version = "1.0.0")
 	private ShiroService shiroService;
 
 	/**

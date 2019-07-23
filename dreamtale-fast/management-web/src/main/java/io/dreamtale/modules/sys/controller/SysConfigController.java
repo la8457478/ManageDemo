@@ -17,6 +17,8 @@
 package io.dreamtale.modules.sys.controller;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import io.dreamtale.bean.entity.sys.entity.SysConfigEntity;
 import io.dreamtale.mybatisplus.extend.common.annotation.SysLog;
 import io.dreamtale.mybatisplus.extend.common.utils.PageUtils;
@@ -41,7 +43,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/config")
 public class SysConfigController extends AbstractController {
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysConfigService sysConfigService;
 	
 	/**

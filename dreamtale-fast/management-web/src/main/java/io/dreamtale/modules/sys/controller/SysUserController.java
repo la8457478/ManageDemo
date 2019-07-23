@@ -1,5 +1,6 @@
 package io.dreamtale.modules.sys.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import io.dreamtale.bean.entity.sys.entity.SysUserEntity;
@@ -36,9 +37,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/user")
 public class SysUserController extends AbstractController {
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysUserService sysUserService;
-	@Autowired
+	@Reference(version = "1.0.0")
 	private SysUserRoleService sysUserRoleService;
 
 

@@ -1,5 +1,7 @@
 package io.dreamtale.modules.sys.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+
 import io.dreamtale.bean.entity.sys.entity.SysRoleEntity;
 import io.dreamtale.mybatisplus.extend.common.annotation.SysLog;
 import io.dreamtale.mybatisplus.extend.common.utils.Constant;
@@ -28,9 +30,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/sys/role")
 public class SysRoleController extends AbstractController {
-    @Autowired
+    @Reference(version = "1.0.0")
     private SysRoleService sysRoleService;
-    @Autowired
+    @Reference(version = "1.0.0")
     private SysRoleMenuService sysRoleMenuService;
 
     /**
