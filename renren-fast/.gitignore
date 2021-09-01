@@ -1,0 +1,16 @@
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+# jrebel
+rebel.xml
+
+# log
+/logs/**/*.gz
+/logs/**/*.log
+/logs/*.log
+
+# ignore Maven generated target folders
+**/target
